@@ -1,0 +1,40 @@
+input {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: lightcoral;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: burlywood;
+    padding: 20px;
+    border-radius: 8px;
+    height: 80vh;
+}
+
+textarea {
+    width: 80%;
+    height: 150px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: lightcoral;
+    height: 80%;
+}
+
+h2 {
+    text-align: center;
+    color: bisque;
+    background-color: burlywood;
+    border-radius: 3px;
+    padding: 10px;
+}
