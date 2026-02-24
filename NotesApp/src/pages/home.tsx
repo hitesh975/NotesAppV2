@@ -6,6 +6,7 @@ export default function Home() {
     return(
         <div>
             <ButtonsType1 text="Add Notes" onClick={() => navigate("/addNotes")}/>
+            <ButtonsType1 text="View Notes" onClick={() => navigate("/viewNotes")}/>
         </div>
     )
 }
