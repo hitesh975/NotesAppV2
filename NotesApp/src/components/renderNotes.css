@@ -1,0 +1,9 @@
+.notesList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: gray;
+    border-radius: 5px;
+    padding: 10px;
+    margin:auto;
+}

@@ -1,0 +1,6 @@
+.renderContainer {
+    display: flex;
+    justify-content: center;
+    background-color: lightgray;
+    padding: 10px;
+}
