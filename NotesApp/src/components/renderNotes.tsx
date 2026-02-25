@@ -11,7 +11,8 @@ export default function RenderNotes() {
         return(
             <div className="notesList">
                 {keys.map((key) => {
-                    return <div key={key}>{key}: {localStorage.getItem(key)}</div>
+                    const Title = key.slice(0, -5);
+                    return <div key={key}>{Title}</div>
                 })}
             </div>
         )

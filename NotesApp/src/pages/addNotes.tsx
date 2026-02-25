@@ -7,16 +7,16 @@ export default function AddNotesPage() {
     const navigate = useNavigate();
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
-    const titleCode  = 829674987468792874682746924867;
+    
 
     function saveNote(title: string, content: string) {
         const Title = title.trim();
+        const TitleKey = Math.floor(Math.random() * (99999 - 10000 + 1) + 10000).toString();
         const Content = content.trim();
         if(Title === "" || Content === "") {
             alert("Title and Content cannot be empty");
             return
         } else {
-            const TitleKey = Title + titleCode;
             localStorage.setItem(TitleKey, Content);
         }
         

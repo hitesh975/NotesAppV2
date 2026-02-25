@@ -12,6 +12,9 @@ export default function ViewNotes() {
                 <RenderNotes />
             </div>
             <ButtonType1 text="go back" onClick={() => navigate("/")} />
+            <ButtonType1 text="clear all" onClick={() => {
+                localStorage.clear();
+            }}/>
         </div>
     )
 }
