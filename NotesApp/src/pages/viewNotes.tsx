@@ -7,14 +7,15 @@ export default function ViewNotes() {
     const navigate = useNavigate()
     return(
         <div className="viewNotes">
-            <h2>View Notes</h2>
             <div className="renderContainer">
                 <RenderNotes />
+                <div>
+                <ButtonType1 text="go back" onClick={() => navigate("/")} />
+                <ButtonType1 text="clear all" onClick={() => {
+                    localStorage.clear();
+                }}/>
             </div>
-            <ButtonType1 text="go back" onClick={() => navigate("/")} />
-            <ButtonType1 text="clear all" onClick={() => {
-                localStorage.clear();
-            }}/>
+            </div>
         </div>
     )
 }

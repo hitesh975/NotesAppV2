@@ -23,11 +23,10 @@ export default function AddNotesPage() {
     }
 
     return(
-        <div>
-            <h2>Add Notes</h2>
-            <div className="container">
-                <input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
-                <textarea placeholder="Content" value={content} onChange={(e) => setContent(e.target.value)}></textarea>
+        <div className="AddNotesContainer">
+            <input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+            <textarea placeholder="Content" value={content} onChange={(e) => setContent(e.target.value)}></textarea>
+            <div>
                 <ButtonsType1 text="Go Back" onClick={() => navigate("/")}/>
                 <ButtonsType1 text="Save Note" onClick={() => {
                     saveNote(title, content)
@@ -35,5 +34,6 @@ export default function AddNotesPage() {
                 }}/>    
             </div>
         </div>
+        
     )
 }

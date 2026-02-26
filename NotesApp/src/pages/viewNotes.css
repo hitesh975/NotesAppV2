@@ -1,6 +1,11 @@
 .renderContainer {
     display: flex;
     justify-content: center;
-    background-color: lightgray;
+    background-color: #2b2b2b;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
 }

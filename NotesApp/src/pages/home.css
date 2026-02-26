@@ -1,0 +1,19 @@
+.container {
+    background-color: #2B2B2B;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 60%;
+    margin: auto;
+    padding: 20px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    padding-bottom: 40px;
+    border-radius: 18px;
+    gap: 20px;  
+}
+
+.container > :first-child {
+    margin-top: 40px;
+}

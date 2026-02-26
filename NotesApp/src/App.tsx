@@ -7,7 +7,6 @@ import OpenNote from "./pages/openNote"
 export default function App() {
   return (
     <div>
-      <h1>Notes App</h1>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/addNotes" element={<AddNotesPage />} />
