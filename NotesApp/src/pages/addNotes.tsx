@@ -17,7 +17,7 @@ export default function AddNotesPage() {
             alert("Title and Content cannot be empty");
             return
         } else {
-            localStorage.setItem(TitleKey, Content);
+            localStorage.setItem(Title + TitleKey, Content);
         }
         
     }
