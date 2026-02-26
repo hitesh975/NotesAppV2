@@ -1,0 +1,30 @@
+h2 {
+    background-color: white;
+    margin:auto;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 8px;
+    color: black;
+    margin-bottom: 30px;
+    padding: 10px 20px;
+}
+
+p {
+    background-color: white;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    color: black;
+    width: 100%;
+    max-width: 600px;
+    
+}
+
+.open-note-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #2B2B2B;
+    border-radius: 10px;
+}

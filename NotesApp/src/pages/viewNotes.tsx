@@ -6,15 +6,15 @@ import './viewNotes.css';
 export default function ViewNotes() {
     const navigate = useNavigate()
     return(
-        <div className="viewNotes">
+        <div className="TopWrapper">
             <div className="renderContainer">
                 <RenderNotes />
                 <div>
-                <ButtonType1 text="go back" onClick={() => navigate("/")} />
-                <ButtonType1 text="clear all" onClick={() => {
-                    localStorage.clear();
-                }}/>
-            </div>
+                    <ButtonType1 text="go back" onClick={() => navigate("/")} />
+                    <ButtonType1 text="clear all" onClick={() => {
+                        localStorage.clear();
+                    }}/>
+                </div>
             </div>
         </div>
     )

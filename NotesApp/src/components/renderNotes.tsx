@@ -1,6 +1,7 @@
 import ButtonsType1 from './Buttons/ButtonsType1';
 import './renderNotes.css';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function RenderNotes() {
         const keys: string[] = [];
@@ -11,14 +12,29 @@ export default function RenderNotes() {
                 keys.push(key);
             }
         }
+
+        const [searchTerm, setSearchTerm] = useState('');
         return(
-            <div className="notesList">
-                {keys.map((key: string) => {
-                    const Title : string = key.slice(0, -5); //PROBLEM HERE
-                    return (
-                        <ButtonsType1 key={key} text={Title} onClick={() => Navigate('../openNote', {state: {key}})} />
-                    )
-                })}
-            </div>
+            <>
+                <input 
+                    type="text" 
+                    placeholder="Search Notes" 
+                    className="searchBar" 
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+
+                <div className="notesList">
+                    {keys.map((key: string) => {
+                        const Title : string = key.slice(0, -5); 
+                        if (!Title.toLowerCase().includes(searchTerm.toLowerCase())) {
+                            return null;
+                        }
+                        return (
+                            <ButtonsType1 key={key} text={Title} onClick={() => Navigate('../openNote', {state: {key}})} />
+                        )
+                    })}
+                </div>
+            </>
         )
     }

@@ -23,15 +23,17 @@ export default function AddNotesPage() {
     }
 
     return(
-        <div className="AddNotesContainer">
-            <input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
-            <textarea placeholder="Content" value={content} onChange={(e) => setContent(e.target.value)}></textarea>
-            <div>
-                <ButtonsType1 text="Go Back" onClick={() => navigate("/")}/>
-                <ButtonsType1 text="Save Note" onClick={() => {
-                    saveNote(title, content)
-                    navigate("/")
-                }}/>    
+        <div className="TopWrapper">
+            <div className="AddNotesContainer">
+                <input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                <textarea placeholder="Content" value={content} onChange={(e) => setContent(e.target.value)}></textarea>
+                <div>
+                    <ButtonsType1 text="Go Back" onClick={() => navigate("/")}/>
+                    <ButtonsType1 text="Save Note" onClick={() => {
+                        saveNote(title, content)
+                        navigate("/")
+                    }}/>    
+                </div>
             </div>
         </div>
         

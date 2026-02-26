@@ -8,6 +8,10 @@ input {
     background-color: white;
 }
 
+.TopWrapper {
+    padding-top: 30px;
+}
+
 .AddNotesContainer {
     display: flex;
     flex-direction: column;
