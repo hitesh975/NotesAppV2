@@ -11,7 +11,7 @@ export default function OpenNote() {
         <div className="TopWrapper">
             <div className="open-note-container">
                 <h2>{Title}</h2>
-                <p>{noteText.split("\n").map((line, index) => <span key={index}>{line}<br/></span>)}</p>
+                <p className="NotesContent">{noteText.split("\n").map((line, index) => <span key={index}>{line}<br/></span>)}</p>
                 <ButtonsType1 text="Go Back" onClick={() => window.history.back()}/>
             </div>
         </div>

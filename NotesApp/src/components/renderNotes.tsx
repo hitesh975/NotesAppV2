@@ -1,4 +1,4 @@
-import ButtonsType1 from './Buttons/ButtonsType1';
+import ButtonsType2 from './Buttons/ButtonsType2';
 import './renderNotes.css';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -26,12 +26,20 @@ export default function RenderNotes() {
 
                 <div className="notesList">
                     {keys.map((key: string) => {
-                        const Title : string = key.slice(0, -5); 
+                        const Title : string = key.slice(0, -5);
+                        const date: string = new Date(parseInt(localStorage.getItem(key + "Date") || "0")).toLocaleString(); 
                         if (!Title.toLowerCase().includes(searchTerm.toLowerCase())) {
                             return null;
                         }
                         return (
-                            <ButtonsType1 key={key} text={Title} onClick={() => Navigate('../openNote', {state: {key}})} />
+                            <div key={key}>
+                                {key.endsWith("Date") ? 
+                                    null :
+                                    <ButtonsType2  
+                                        text1={Title} 
+                                        text2={date} 
+                                        onClick={() => Navigate('../openNote', {state: {key}})} />}
+                            </div>
                         )
                     })}
                 </div>
