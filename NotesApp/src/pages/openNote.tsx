@@ -1,12 +1,16 @@
 import { useLocation } from "react-router-dom"
 import ButtonsType1 from "../components/Buttons/ButtonsType1";
 import "./openNote.css"
+import { useState } from "react";
 
 export default function OpenNote() {
-    const location = useLocation();
-    const key = location.state?.key;
-    const Title = key ? key.slice(0, -5) : "Note not found";
-    const noteText = key ? localStorage.getItem(key) || "Note content not found" : "Note content not found";
+    const TitleKey = useLocation().state.key;
+    const notes = useState(() => {
+        JSON.parse(localStorage.getItem('notes') || "[]");
+    })
+    const selectedNote = notes.find((note: any) => note.title === TitleKey);
+    const Title = selectedNote ? selectedNote.title.slice(0, -5) : "Note Not Found";
+    const noteText = selectedNote ? selectedNote.text : "The note you are looking for does not exist.";
     return(
         <div className="TopWrapper">
             <div className="open-note-container">
