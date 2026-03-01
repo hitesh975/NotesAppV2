@@ -19,6 +19,8 @@ export default function AddNotesPage() {
         } else {
             localStorage.setItem(Title + TitleKey, Content);
             localStorage.setItem(Title + TitleKey + "Date", Date.now().toString());
+            localStorage.setItem(Title + TitleKey + "RevisionCount", '0');
+            localStorage.setItem(Title + TitleKey + "last revised", Date.now().toString());
         }
         
     }
