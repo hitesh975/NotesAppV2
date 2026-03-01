@@ -4,14 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 export default function RenderNotes() {
-        const keys: string[] = [];
         const Navigate = useNavigate();
-        for (let i = 0; i < localStorage.length; i++) {
-            const key: string | null = localStorage.key(i);
-            if (key) {
-                keys.push(key);
-            }
-        }
+        const [notes, setNotes] = useState(() => {
+        const stored = localStorage.getItem("notes");
+        return stored ? JSON.parse(stored) : [];
+        });
 
         const [searchTerm, setSearchTerm] = useState('');
         return(
@@ -25,15 +22,15 @@ export default function RenderNotes() {
                 />
 
                 <div className="notesList">
-                    {keys.map((key: string) => {
-                        const Title : string = key.slice(0, -5);
-                        const date: string = new Date(parseInt(localStorage.getItem(key + "Date") || "0")).toLocaleString(); 
+                    {notes.map((title: string) => {
+                        const Title : string = title.slice(0, -5);
+                        const date : string =  
                         if (!Title.toLowerCase().includes(searchTerm.toLowerCase())) {
                             return null;
                         }
                         return (
-                            <div key={key}>
-                                {key.endsWith("Date") ? 
+                            <div key={title}>
+                                {title.endsWith("Date") ? 
                                     null :
                                     <ButtonsType2  
                                         text1={Title} 

@@ -8,14 +8,6 @@ export default function AddNotesPage() {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
 
-    type Note = {
-        title: string;
-        Content: string;
-        lastReviewed: number;
-        nextReview: number;
-    }
-    const [notes, setNotes] = useState<Note[]>([])
-
     function saveNote(title: string, content: string) {
         const Title = title.trim();
         const TitleKey = Math.floor(Math.random() * (99999 - 10000 + 1) + 10000).toString();
@@ -24,14 +16,18 @@ export default function AddNotesPage() {
             alert("Title and Content cannot be empty");
             return;
         } else {
-            const note = {
+            const notes = {
                 title: Title + TitleKey,
                 Content,
-                lastReviewed: Date.now().toString(),
-                nextReview: Date.now() + (1 * 86400000)
-            };
-            setNotes(prev => [...prev, note]);
-            localStorage.setItem('notes', JSON.stringify(notes));
+                date: Date.now().toString()
+            }
+            const existingNotes = localStorage.getItem('notes');
+            let notesArray = [];
+            if (existingNotes) {
+                notesArray = JSON.parse(existingNotes);
+            }
+            notesArray.push(notes);
+            localStorage.setItem('notes', JSON.stringify(notesArray));
         }
         
     }
