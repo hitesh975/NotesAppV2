@@ -5,10 +5,7 @@ import { useState } from 'react';
 
 export default function RenderNotes() {
         const Navigate = useNavigate();
-        const [notes, setNotes] = useState(() => {
-        const stored = localStorage.getItem("notes");
-        return stored ? JSON.parse(stored) : [];
-        });
+        const notes = JSON.parse(localStorage.getItem('notes') || "[]");
 
         const [searchTerm, setSearchTerm] = useState('');
         return(
@@ -22,20 +19,17 @@ export default function RenderNotes() {
                 />
 
                 <div className="notesList">
-                    {notes.map((title: string) => {
-                        const Title : string = title.slice(0, -5);
-                        const date : string =  
-                        if (!Title.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    {notes.map((Notes: any) => {
+                        const title = Notes.title.slice(0, -5);
+                        const date = new Date(parseInt(Notes.date)).toLocaleDateString();
+                        if (!title.toLowerCase().includes(searchTerm.toLowerCase())) {
                             return null;
                         }
                         return (
-                            <div key={title}>
-                                {title.endsWith("Date") ? 
-                                    null :
-                                    <ButtonsType2  
-                                        text1={Title} 
-                                        text2={date} 
-                                        onClick={() => Navigate('../openNote', {state: {key}})} />}
+                            <div key={Notes.title} className='noteList'>
+                                <ButtonsType2 text1={title} text2={date} onClick={
+                                    () => Navigate('../openNote', {state: {key: Notes.title}})
+                                }></ButtonsType2>
                             </div>
                         )
                     })}
