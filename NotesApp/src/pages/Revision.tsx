@@ -1,11 +1,13 @@
 import "./Revision.css"
 
 function calculateRevisionPending(key: string) {
-    const RevisionCount = parseInt(localStorage.getItem(key + "RevisionCount") || "0");
+    const max_interval = 270;
     const date = parseInt(localStorage.getItem(key + "last revised") || "0");
     const currentTime = Date.now();
     const timeDiff = currentTime - date;
-    const next_revision = null// not decided
+    let next_revision = timeDiff * 1.7; // 1.7 is growth rate
+    if (next_revision > max_interval) {next_revision = 270}
+    return Math.round(next_revision)
 }
 
 function checkRevisionPending(key: string) {
