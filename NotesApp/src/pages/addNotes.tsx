@@ -19,7 +19,10 @@ export default function AddNotesPage() {
             const notes = {
                 title: Title + TitleKey,
                 Content,
-                date: Date.now().toString()
+                date: Date.now().toString(),
+                lastRevised: Date.now().toString(),
+                NumberOfRevisions: 0,
+                nextRevision: 0
             }
             const existingNotes = localStorage.getItem('notes');
             let notesArray = [];

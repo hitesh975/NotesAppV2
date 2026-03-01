@@ -8,6 +8,7 @@ export default function Home() {
         <div className="container">
             <ButtonsType1 text="Add Notes" onClick={() => navigate("/addNotes")}/>
             <ButtonsType1 text="View Notes" onClick={() => navigate("/viewNotes")}/>
+            <ButtonsType1 text="Revision" onClick={() => navigate("/revision")}/>
         </div>
     )
 }
