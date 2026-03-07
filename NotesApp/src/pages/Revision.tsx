@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Revision.css";
+import ButtonsType1 from "../components/Buttons/ButtonsType1";
 
 type Note = {
   title: string;
@@ -52,7 +53,9 @@ export default function Revision() {
 
         return (
           <div key={note.title} className="revisionNote">
-            <h2>{note.title}</h2>
+            <ButtonsType1 text={note.title.slice(0, -5)} onClick={() => {
+              
+            }}/>
             <p className="RevisionComponent">
               Last Revised:{" "}
               {new Date(note.lastRevised).toLocaleDateString()}
