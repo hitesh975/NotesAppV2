@@ -1,0 +1,32 @@
+.notification-button {
+    position: relative;
+    background-color: #D4D4D4;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 40px;
+
+}
+
+.notification-button:hover {
+    background-color: white;
+}
+
+.notificationButtonText {
+    font-size: 16px;
+}
+
+.count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #dc3545;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 10px;
+    font-size: 12px;
+}

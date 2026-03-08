@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import ButtonsType1 from "../components/Buttons/ButtonsType1"
+import NotificationButton from "../components/Buttons/notificationButton"
 import "./home.css"
 
 export default function Home() {
@@ -8,7 +9,7 @@ export default function Home() {
         <div className="container">
             <ButtonsType1 text="Add Notes" onClick={() => navigate("/addNotes")}/>
             <ButtonsType1 text="View Notes" onClick={() => navigate("/viewNotes")}/>
-            <ButtonsType1 text="Revision" onClick={() => navigate("/revision")}/>
+            <NotificationButton text="Revision" count={5 /* place holder */} onClick={() => navigate("/revision")}/>
         </div>
     )
 }
