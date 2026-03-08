@@ -15,6 +15,7 @@ export default function OpenNote() {
                 <h2>{Title}</h2>
                 <p className="NotesContent">{noteText}</p>
                 <ButtonsType1 text="Go Back" onClick={() => window.history.back()}/>
+                <ButtonsType1 text="Delete" onClick={() => {}}/>
             </div>
         </div>
     )

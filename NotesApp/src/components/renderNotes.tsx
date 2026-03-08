@@ -2,6 +2,8 @@ import ButtonsType2 from './Buttons/ButtonsType2';
 import './renderNotes.css';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import DeleteNote from './deleteNote'; 
+import delete from ../../assets/image.svg;
 
 export default function RenderNotes() {
         const Navigate = useNavigate();
@@ -20,7 +22,8 @@ export default function RenderNotes() {
 
                 <div className="notesList">
                     {notes.map((Notes: any) => {
-                        const title = Notes.title.slice(0, -5);
+                        const titleKey = Notes.title;
+                        const title = titleKey.slice(0, -5);
                         const date = new Date(parseInt(Notes.date)).toLocaleDateString();
                         if (!title.toLowerCase().includes(searchTerm.toLowerCase())) {
                             return null;
@@ -30,6 +33,9 @@ export default function RenderNotes() {
                                 <ButtonsType2 text1={title} text2={date} onClick={
                                     () => Navigate('../openNote', {state: {key: Notes.title}})
                                 }></ButtonsType2>
+                                <button className="deleteButton1" onClick={() => {DeleteNote(titleKey)}}>
+                                    <img src={delete} alt="delete" />
+                                </button>
                             </div>
                         )
                     })}
