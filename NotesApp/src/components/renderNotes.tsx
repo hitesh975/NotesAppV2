@@ -1,15 +1,24 @@
+import React, { useState } from 'react';
 import ButtonsType2 from './Buttons/ButtonsType2';
 import './renderNotes.css';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import DeleteNote from './deleteNote'; 
-import delete from ../../assets/image.svg;
+import deleteIcon from '../assets/delete.svg';
 
-export default function RenderNotes() {
+interface RenderNotesProps {
+    notes: any[];
+    setNotes: React.Dispatch<React.SetStateAction<any[]>>;
+}
+
+export default function RenderNotes({ notes, setNotes }: RenderNotesProps) {
         const Navigate = useNavigate();
-        const notes = JSON.parse(localStorage.getItem('notes') || "[]");
-
         const [searchTerm, setSearchTerm] = useState('');
+
+        const handleDelete = (titleKey: string) => {
+            const filtered = notes.filter(n => n.title !== titleKey);
+            localStorage.setItem('notes', JSON.stringify(filtered));
+            setNotes(filtered);
+        };
+
         return(
             <>
                 <input 
@@ -33,8 +42,8 @@ export default function RenderNotes() {
                                 <ButtonsType2 text1={title} text2={date} onClick={
                                     () => Navigate('../openNote', {state: {key: Notes.title}})
                                 }></ButtonsType2>
-                                <button className="deleteButton1" onClick={() => {DeleteNote(titleKey)}}>
-                                    <img src={delete} alt="delete" />
+                                <button className="deleteButton1" onClick={() => handleDelete(titleKey)}>
+                                    <img src={deleteIcon} alt="delete" className='delete-icon' />
                                 </button>
                             </div>
                         )
