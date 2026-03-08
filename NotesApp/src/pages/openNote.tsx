@@ -7,7 +7,7 @@ export default function OpenNote() {
     const notes = JSON.parse(localStorage.getItem('notes') || '[]');
     const Title = TitleKey.slice(0, -5);
     const selectedNote = notes.find((n: any) => n.title === TitleKey);
-    const noteText = selectedNote ? selectedNote.Content : "Note not found"
+    const noteText = selectedNote ? selectedNote.content : "Note not found"
     
     return(
         <div className="TopWrapper">

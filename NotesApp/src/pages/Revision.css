@@ -10,9 +10,17 @@
     gap: 1px;
     width: 80%;
     margin: auto;
+    height: 80vh;
 }
 
 .RevisionComponent {
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.noRevisionPending {
     background-color: white;
     color: black;
     border-radius: 5px;

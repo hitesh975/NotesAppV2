@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Revision.css";
 import ButtonsType1 from "../components/Buttons/ButtonsType1";
+import { useNavigate } from "react-router-dom";
 
 type Note = {
   title: string;
@@ -24,7 +25,7 @@ function isRevisionPending(note: Note): boolean {
 
 
 export default function Revision() {
-
+  const navigate = useNavigate();
   const [notes, setNotes] = useState<Note[]>([]);
 
   useEffect(() => {
@@ -45,16 +46,20 @@ export default function Revision() {
       <h1>Revision</h1>
 
       {pendingNotes.length === 0 && (
-        <p>No revisions pending</p>
+        <div className="revisionNote">
+          <p className="noRevisionPending">No revisions pending</p>
+        </div>
       )}
 
       {pendingNotes.map((note) => {
         const nextRevision = calculateNextRevision(note);
-
+      
         return (
           <div key={note.title} className="revisionNote">
             <ButtonsType1 text={note.title.slice(0, -5)} onClick={() => {
-              
+              /*for now i will just navigate the user to the note they saved, will add a proper things
+              to revise later */
+              navigate('./openNote', {state: {key: note.title}})
             }}/>
             <p className="RevisionComponent">
               Last Revised:{" "}
