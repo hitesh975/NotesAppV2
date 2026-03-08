@@ -26,3 +26,9 @@
     border-radius: 5px;
     padding: 10px;
 }
+
+.revisionContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

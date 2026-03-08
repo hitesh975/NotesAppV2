@@ -9,9 +9,7 @@ export default function Revision() {
   const pendingNotes = RevisionFindingAlgorithm();
 
   return (
-    <div>
-      <h1>Revision</h1>
-
+    <div className="revisionContainer">
       {pendingNotes.length === 0 && (
         <div className="revisionNote">
           <p className="noRevisionPending">No revisions pending</p>
@@ -42,6 +40,7 @@ export default function Revision() {
           </div>
         );
       })}
+        <ButtonsType1 text="Go Back" onClick={() => {navigate("/")}}></ButtonsType1>
     </div>
   );
 }
