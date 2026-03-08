@@ -1,45 +1,12 @@
-import { useEffect, useState } from "react";
 import "./Revision.css";
 import ButtonsType1 from "../components/Buttons/ButtonsType1";
 import { useNavigate } from "react-router-dom";
-
-type Note = {
-  title: string;
-  lastRevised: number;       
-  numberOfRevisions: number; };
-
-function calculateNextRevision(note: Note): number {
-  const baseInterval = 24 * 60 * 60 * 1000; // 1 day in ms
-  const multiplier = 1.7;
-
-  const interval =
-    baseInterval * Math.pow(multiplier, note.numberOfRevisions);
-
-  return note.lastRevised + interval;
-}
-
-function isRevisionPending(note: Note): boolean {
-  const nextRevision = calculateNextRevision(note);
-  return Date.now() >= nextRevision;
-}
-
+import RevisionFindingAlgorithm from "../components/RevisionFindingAlgorithm";
+import calculateNextRevision from "../components/calculateNextRevision";
 
 export default function Revision() {
   const navigate = useNavigate();
-  const [notes, setNotes] = useState<Note[]>([]);
-
-  useEffect(() => {
-    const stored = localStorage.getItem("notes");
-
-    if (stored) {
-      const parsed: Note[] = JSON.parse(stored);
-      setNotes(parsed);
-    }
-  }, []);
-
-  const pendingNotes = notes.filter((note) =>
-    isRevisionPending(note)
-  );
+  const pendingNotes = RevisionFindingAlgorithm();
 
   return (
     <div>
