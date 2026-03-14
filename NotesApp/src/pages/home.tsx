@@ -13,6 +13,7 @@ export default function Home() {
             <ButtonsType1 text="Add Notes" onClick={() => navigate("/addNotes")}/>
             <ButtonsType1 text="View Notes" onClick={() => navigate("/viewNotes")}/>
             <NotificationButton text="Revision" count={pendingCount} onClick={() => navigate("/revision")}/>
+            <ButtonsType1 text="formulae" onClick={() => navigate("/formulae")} />
         </div>
     )
 }

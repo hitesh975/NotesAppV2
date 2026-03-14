@@ -4,6 +4,9 @@ import Home from "./pages/home"
 import ViewNotes from "./pages/viewNotes"
 import OpenNote from "./pages/openNote"
 import Revision from "./pages/Revision"
+import Formulae from "./pages/formulae"
+import AddFormulae from "./pages/addFormulae"
+import ViewForumulae from "./pages/viewFormulae"
 
 export default function App() {
   return (
@@ -14,6 +17,9 @@ export default function App() {
           <Route path="/viewNotes" element={<ViewNotes />} />
           <Route path="/openNote" element={<OpenNote />} />
           <Route path="/Revision" element={<Revision />} />
+          <Route path="/formulae" element={<Formulae/>} />
+          <Route path="addFormulae" element={<AddFormulae/>} />
+          <Route path="viewFormulae" element={<ViewForumulae/>}/>
         </Routes>
     </div>
   )
