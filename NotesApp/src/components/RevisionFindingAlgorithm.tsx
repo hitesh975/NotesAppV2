@@ -16,7 +16,7 @@ export default function RevisionFindingAlgorithm() {
             }
         }, []);
 
-        const pendingNotes = notes.filter((note) =>
+        const pendingNotes = notes.filter((note) => //apparently error here, note.filter()
             isRevisionPending(note)
         );
         return pendingNotes;
