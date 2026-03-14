@@ -18,8 +18,8 @@ export default function App() {
           <Route path="/openNote" element={<OpenNote />} />
           <Route path="/Revision" element={<Revision />} />
           <Route path="/formulae" element={<Formulae/>} />
-          <Route path="addFormulae" element={<AddFormulae/>} />
-          <Route path="viewFormulae" element={<ViewForumulae/>}/>
+          <Route path="/formulae/addFormulae" element={<AddFormulae/>} />
+          <Route path="/formulae/viewFormulae" element={<ViewForumulae/>}/>
         </Routes>
     </div>
   )

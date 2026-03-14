@@ -1,12 +1,13 @@
 import ButtonsType1 from "../components/Buttons/ButtonsType1"
 import { useNavigate } from "react-router-dom"
+import "./formulae.css"
 
 export default function Formulae() {
     const Navigate = useNavigate();
     return(
-        <div>
-            <ButtonsType1  text="add formulae" onClick={() => {Navigate("./addFormulae")}}/>
-            <ButtonsType1  text="view formulae" onClick={() => {Navigate("./viewFormulae")}}/>
+        <div className="container">
+            <ButtonsType1  text="add formulae" onClick={() => {Navigate("/formulae/addFormulae")}}/>
+            <ButtonsType1  text="view formulae" onClick={() => {Navigate("/formulae/viewFormulae")}}/>
         </div>
     )
 }
