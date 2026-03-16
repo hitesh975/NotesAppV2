@@ -11,7 +11,6 @@ export default function ViewNotes() {
     });
 
     const clearAll = () => {
-        localStorage.clear();
         setNotes([]);
     };
 

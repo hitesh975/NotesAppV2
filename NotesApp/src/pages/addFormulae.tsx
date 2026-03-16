@@ -10,6 +10,7 @@ export default function AddFormulae() {
         const newFormula = content;
 
         formulaArray.push(newFormula);
+        localStorage.setItem('formulae', JSON.stringify(formulaArray));
     }
 
     const [content, setContent] = useState('');
