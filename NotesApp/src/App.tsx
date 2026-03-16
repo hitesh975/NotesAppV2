@@ -7,19 +7,25 @@ import Revision from "./pages/Revision"
 import Formulae from "./pages/formulae"
 import AddFormulae from "./pages/addFormulae"
 import ViewForumulae from "./pages/viewFormulae"
+import Definitions from "./Definitions"
+import AddDefinitions from "./addDefinitions"
+import ViewDefinitions from "./viewDefinitions"
 
 export default function App() {
   return (
     <div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/addNotes" element={<AddNotesPage />} />
-          <Route path="/viewNotes" element={<ViewNotes />} />
-          <Route path="/openNote" element={<OpenNote />} />
-          <Route path="/Revision" element={<Revision />} />
-          <Route path="/formulae" element={<Formulae/>} />
+          <Route path="/addNotes" element={<AddNotesPage />}/>
+          <Route path="/viewNotes" element={<ViewNotes />}/>
+          <Route path="/openNote" element={<OpenNote />}/>
+          <Route path="/Revision" element={<Revision />}/>
+          <Route path="/formulae" element={<Formulae/>}/>
           <Route path="/formulae/addFormulae" element={<AddFormulae/>} />
           <Route path="/formulae/viewFormulae" element={<ViewForumulae/>}/>
+          <Route path="/Definitions" element={<Definitions/>}/>
+          <Route path="/Definitions/addDefinitions" element={<AddDefinitions/>}/>
+          <Route path="/Definitions/viewDefinitions" element={<ViewDefinitions/>}/>
         </Routes>
     </div>
   )
