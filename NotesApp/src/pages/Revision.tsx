@@ -17,7 +17,7 @@ export default function Revision() {
       )}
 
       {pendingNotes.map((note) => {
-        const nextRevision = calculateNextRevision(note);
+        const [nextRevision, due] = calculateNextRevision(note);
       
         return (
           <div key={note.title} className="revisionNote">
@@ -36,6 +36,10 @@ export default function Revision() {
             </p>
             <p className="RevisionComponent">
               Number of Revisions: {note.numberOfRevisions}
+            </p>
+            <p className="RevisionComponent">
+              Due: {" "}
+              {new Date(due).toLocaleDateString()}
             </p>
           </div>
         );

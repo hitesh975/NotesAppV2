@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
+import ButtonsType1 from "./components/Buttons/ButtonsType1";
 
 export default function ViewDefinitions () {
+    const Navigate = useNavigate();
     const [definitions, setDefintions] = useState(()=>{
         return JSON.parse(localStorage.getItem('definitions') || '[]')
     })
@@ -9,11 +11,12 @@ export default function ViewDefinitions () {
         <div className="container">
             {definitions.map((definition : String) => {
                 return (
-                    <div>
+                    <div key={definition+"definition"} className="formulae">
                         {definition}
                     </div>
                 )
             })}
+            <ButtonsType1 text="Back" onClick={()=>Navigate(-1)}/>
         </div>
     )
 }

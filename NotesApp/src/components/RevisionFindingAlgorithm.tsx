@@ -1,38 +1,25 @@
-import { useState } from "react";
-import { useEffect } from "react";
 import calculateNextRevision from "./calculateNextRevision";
 
-export default function RevisionFindingAlgorithm() {
-    //new function
-    function revisionfinder() {
-        const [notes, setNotes] = useState<Note[]>([]);
+type Note = {
+    title: string;
+    lastRevised: number;
+    numberOfRevisions: number;
+};
 
-        useEffect(() => {
-            const stored = localStorage.getItem("notes");
+function isRevisionPending(note: Note): boolean {
+    const parsedNote: Note = {
+        title: note.title,
+        lastRevised: Number(note.lastRevised) || 0,
+        numberOfRevisions: Number(note.numberOfRevisions) || 0,
+    };
+    const [nextRevision, due] = calculateNextRevision(parsedNote);
+    const now = Date.now();
+    return now >= nextRevision && now <= due;
+}
 
-            if (stored) {
-                const parsed: Note[] = JSON.parse(stored);
-                setNotes(parsed);
-            }
-        }, []);
-
-        const pendingNotes = notes.filter((note) => //apparently error here, note.filter()
-            isRevisionPending(note)
-        );
-        return pendingNotes;
-    }
-
-    //notes type
-    type Note = {
-        title: string;
-        lastRevised: number;       
-        numberOfRevisions: number; };
-
-    //new function
-    function isRevisionPending(note: Note): boolean {
-        const nextRevision = calculateNextRevision(note);
-        return Date.now() >= nextRevision;
-    }
-    const pendingNotes = revisionfinder();
-    return pendingNotes;    
+export default function RevisionFindingAlgorithm(): Note[] {
+    const stored = localStorage.getItem("notes");
+    const notes: Note[] = stored ? JSON.parse(stored) : [];
+    const PendingNotes = notes.filter((note) => isRevisionPending(note))
+    return PendingNotes;
 }

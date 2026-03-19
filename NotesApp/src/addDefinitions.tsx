@@ -7,10 +7,12 @@ export default function AddDefinitions () {
     const [definition, Setdefinition] = useState("");
     
     function Save() {
+        console.log("saved")
         const existing = localStorage.getItem("definitions")
         const existingArray = existing ? JSON.parse(existing) : [];
         existingArray.push(definition);
-        localStorage.setItem("defintions",JSON.stringify(existingArray))
+        localStorage.setItem("definitions",JSON.stringify(existingArray))
+        Setdefinition("");
     }
 
     return (
