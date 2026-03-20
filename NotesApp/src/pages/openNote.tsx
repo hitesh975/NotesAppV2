@@ -9,6 +9,7 @@ type Note = {
   date: number;
   lastRevised: number;
   numberOfRevisions: number;
+  streak: number;
 };
 
 export default function OpenNote() {

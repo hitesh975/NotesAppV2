@@ -5,7 +5,7 @@ import ButtonsType1 from "../components/Buttons/ButtonsType1";
 
 export default function ViewForumulae() {
     const [search, setSearch] = useState('');
-    const [formulae, setFormulae] = useState(()=>{
+    const [formulae] = useState(()=>{
         return JSON.parse(localStorage.getItem('formulae') || '[]')
     })
     const Navigate= useNavigate();

@@ -25,6 +25,7 @@ export default function Revision() {
               /*for now i will just navigate the user to the note they saved, will add a proper things
               to revise later */
               navigate('./openNote', {state: {key: note.title}})
+              note.streak += 1;
             }}/>
             <p className="RevisionComponent">
               Last Revised:{" "}
@@ -41,6 +42,7 @@ export default function Revision() {
               Due: {" "}
               {new Date(due).toLocaleDateString()}
             </p>
+            <div>streak: {note.streak}</div>
           </div>
         );
       })}

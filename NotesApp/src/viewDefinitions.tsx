@@ -4,7 +4,7 @@ import ButtonsType1 from "./components/Buttons/ButtonsType1";
 
 export default function ViewDefinitions () {
     const Navigate = useNavigate();
-    const [definitions, setDefintions] = useState(()=>{
+    const [definitions] = useState(()=>{
         return JSON.parse(localStorage.getItem('definitions') || '[]')
     })
     return (

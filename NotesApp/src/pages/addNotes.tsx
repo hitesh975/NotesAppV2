@@ -9,6 +9,7 @@ type Note = {
     date: number
     lastRevised: number
     numberOfRevisions: number
+    streak: number
 }
 
 export default function AddNotesPage() {
@@ -30,7 +31,8 @@ export default function AddNotesPage() {
             content: trimmedContent,
             date: Date.now(),
             lastRevised: Date.now(),
-            numberOfRevisions: 0
+            numberOfRevisions: 0,
+            streak: 1
         }
 
         const existing = localStorage.getItem("notes")

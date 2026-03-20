@@ -1,8 +1,10 @@
 //notes type
     type Note = {
         title: string;
-        lastRevised: number;       
-        numberOfRevisions: number; };
+        lastRevised: number;
+        numberOfRevisions: number;
+        streak: number;
+    };
 
 //new function
     export default function calculateNextRevision(note: Note): [number, number] {
