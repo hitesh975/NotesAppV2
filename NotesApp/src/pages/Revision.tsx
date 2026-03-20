@@ -24,8 +24,7 @@ export default function Revision() {
             <ButtonsType1 text={note.title.slice(0, -5)} onClick={() => {
               /*for now i will just navigate the user to the note they saved, will add a proper things
               to revise later */
-              navigate('./openNote', {state: {key: note.title}})
-              note.streak += 1;
+              navigate('./openNote', {state: {key: note.title}});
             }}/>
             <p className="RevisionComponent">
               Last Revised:{" "}
