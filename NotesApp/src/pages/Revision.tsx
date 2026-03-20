@@ -41,7 +41,6 @@ export default function Revision() {
               Due: {" "}
               {new Date(due).toLocaleDateString()}
             </p>
-            <div>streak: {note.streak}</div>
           </div>
         );
       })}
