@@ -1,12 +1,12 @@
 import "./Revision.css";
 import ButtonsType1 from "../components/Buttons/ButtonsType1";
 import { useNavigate } from "react-router-dom";
-import RevisionFindingAlgorithm from "../components/RevisionFindingAlgorithm";
+import useRevisionPendingNotes from "../components/RevisionFindingAlgorithm";
 import calculateNextRevision from "../components/calculateNextRevision";
 
 export default function Revision() {
   const navigate = useNavigate();
-  const pendingNotes = RevisionFindingAlgorithm();
+  const pendingNotes = useRevisionPendingNotes();
 
   return (
     <div className="revisionContainer">

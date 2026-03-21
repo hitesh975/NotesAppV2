@@ -1,25 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ButtonsType1 from "../components/Buttons/ButtonsType1";
+import { NotesContext } from "../notesContext";
 import "./openNote.css";
-
-type Note = {
-  title: string;
-  content: string;
-  date: number;
-  lastRevised: number;
-  numberOfRevisions: number;
-  streak: number;
-};
 
 export default function OpenNote() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { notes, setNotes, saveNotes } = useContext(NotesContext)!;
   const TitleKey = (location.state as { key: string } | undefined)?.key;
-
-  const [notes, setNotes] = useState<Note[]>(() => {
-    return JSON.parse(localStorage.getItem("notes") || "[]");
-  });
 
   const selectedNote = notes.find((n) => n.title === TitleKey);
   const [noteText, setNoteText] = useState<string>(selectedNote?.content ?? "");
@@ -63,16 +52,16 @@ export default function OpenNote() {
       };
     });
 
-    localStorage.setItem("notes", JSON.stringify(updatedNotes));
     setNotes(updatedNotes);
+    saveNotes();
     setNoteText(trimmed);
     alert("Note saved successfully.");
   };
 
   const deleteNote = () => {
     const filtered = notes.filter((note) => note.title !== TitleKey);
-    localStorage.setItem("notes", JSON.stringify(filtered));
     setNotes(filtered);
+    saveNotes();
     navigate(-1);
   };
 

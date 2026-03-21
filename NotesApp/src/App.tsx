@@ -1,4 +1,6 @@
 import { Routes, Route } from "react-router-dom"
+import { useState, useEffect } from "react";
+import { NotesContext } from "./notesContext";
 import AddNotesPage from "./pages/addNotes"
 import Home from "./pages/home"
 import ViewNotes from "./pages/viewNotes"
@@ -11,10 +13,28 @@ import Definitions from "./Definitions"
 import AddDefinitions from "./addDefinitions"
 import ViewDefinitions from "./viewDefinitions"
 
+type Note = {
+    title: string
+    content: string
+    date: number
+    lastRevised: number
+    numberOfRevisions: number
+}
+
 export default function App() {
+  const [notes, setNotes] = useState<Note[]>([]);
+  useEffect(() => {
+    const stored = localStorage.getItem("notes");
+    if (stored) {
+      setNotes(JSON.parse(stored));
+    }
+  }, []);
+  const saveNotes = () => {
+    localStorage.setItem("notes", JSON.stringify(notes));
+  };
   return (
-    <div>
-        <Routes>
+    <NotesContext.Provider value={{notes, setNotes, saveNotes}}>
+      <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/addNotes" element={<AddNotesPage />}/>
           <Route path="/viewNotes" element={<ViewNotes />}/>
@@ -27,6 +47,6 @@ export default function App() {
           <Route path="/Definitions/addDefinitions" element={<AddDefinitions/>}/>
           <Route path="/Definitions/viewDefinitions" element={<ViewDefinitions/>}/>
         </Routes>
-    </div>
+    </NotesContext.Provider>
   )
 }

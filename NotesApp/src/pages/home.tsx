@@ -2,11 +2,11 @@ import { useNavigate } from "react-router-dom"
 import ButtonsType1 from "../components/Buttons/ButtonsType1"
 import NotificationButton from "../components/Buttons/notificationButton"
 import "./home.css"
-import RevisionFindingAlgorithm from "../components/RevisionFindingAlgorithm";
+import useRevisionPendingNotes from "../components/RevisionFindingAlgorithm";
 
 export default function Home() {
         const navigate = useNavigate()
-        const pendingNotes = RevisionFindingAlgorithm();
+        const pendingNotes = useRevisionPendingNotes();
         const pendingCount = pendingNotes.length;
     return(
         <div className="container">

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import ButtonsType1 from "../components/Buttons/ButtonsType1"
-import { useState } from "react"
+import { useState, useContext } from "react"
+import { NotesContext } from "../notesContext"
 import "./addNotes.css"
 
 type Note = {
@@ -13,6 +14,7 @@ type Note = {
 
 export default function AddNotesPage() {
     const navigate = useNavigate()
+    const { notes, setNotes, saveNotes } = useContext(NotesContext)!
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
 
@@ -33,12 +35,12 @@ export default function AddNotesPage() {
             numberOfRevisions: 0,
         }
 
-        const existing = localStorage.getItem("notes")
-        const notesArray: Note[] = existing ? JSON.parse(existing) : []
-
-        notesArray.push(newNote)
-
-        localStorage.setItem("notes", JSON.stringify(notesArray))
+        const updatedNotes = [...notes, newNote]
+        setNotes(updatedNotes)
+        saveNotes()
+        setTitle("")
+        setContent("")
+        navigate("/viewNotes")
     }
 
     return (

@@ -1,17 +1,17 @@
 import ButtonType1 from "../components/Buttons/ButtonsType1";
 import { useNavigate } from "react-router-dom";
 import RenderNotes from "../components/renderNotes";
-import { useState } from "react";
+import { useContext } from "react";
+import { NotesContext } from "../notesContext";
 import './viewNotes.css';
 
 export default function ViewNotes() {
     const navigate = useNavigate();
-    const [notes, setNotes] = useState<any[]>(() => {
-        return JSON.parse(localStorage.getItem('notes') || '[]');
-    });
+    const { notes, setNotes, saveNotes } = useContext(NotesContext)!;
 
     const clearAll = () => {
         setNotes([]);
+        saveNotes();
     };
 
     return (

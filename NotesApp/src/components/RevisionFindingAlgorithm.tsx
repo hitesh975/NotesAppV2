@@ -1,11 +1,5 @@
 import calculateNextRevision from "./calculateNextRevision";
-
-type Note = {
-    title: string;
-    lastRevised: number;
-    numberOfRevisions: number;
-    streak: number;
-};
+import { useStorage, type Note } from "../App";
 
 function isRevisionPending(note: Note): boolean {
     const parsedNote: Note = {
@@ -13,15 +7,15 @@ function isRevisionPending(note: Note): boolean {
         lastRevised: Number(note.lastRevised) || 0,
         numberOfRevisions: Number(note.numberOfRevisions) || 0,
         streak: Number((note as any).streak) || 0,
+        content: note.content,
+        date: note.date,
     };
     const [nextRevision, due] = calculateNextRevision(parsedNote);
     const now = Date.now();
     return now >= nextRevision && now <= due;
 }
 
-export default function RevisionFindingAlgorithm(): Note[] {
-    const stored = localStorage.getItem("notes");
-    const notes: Note[] = stored ? JSON.parse(stored) : [];
-    const PendingNotes = notes.filter((note) => isRevisionPending(note))
-    return PendingNotes;
+export default function useRevisionPendingNotes(): Note[] {
+    const { notes } = useStorage();
+    return notes.filter((note) => isRevisionPending(note));
 }

@@ -15,8 +15,7 @@ export default function RenderNotes({ notes, setNotes }: RenderNotesProps) {
 
         const handleDelete = (titleKey: string) => {
             const filtered = notes.filter(n => n.title !== titleKey);
-            localStorage.setItem('notes', JSON.stringify(filtered));
-            setNotes(filtered);
+            setNotes(filtered);  
         };
 
         return(
