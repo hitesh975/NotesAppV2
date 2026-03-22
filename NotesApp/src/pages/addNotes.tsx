@@ -3,27 +3,27 @@ import ButtonsType1 from "../components/Buttons/ButtonsType1"
 import { useState, useContext } from "react"
 import { NotesContext } from "../notesContext"
 import "./addNotes.css"
-
 type Note = {
     title: string
     content: string
     date: number
     lastRevised: number
     numberOfRevisions: number
+    streak: number
 }
 
 export default function AddNotesPage() {
-    const navigate = useNavigate()
-    const { notes, setNotes, saveNotes } = useContext(NotesContext)!
-    const [title, setTitle] = useState("")
-    const [content, setContent] = useState("")
+    const navigate = useNavigate();
+    const { notes, setNotes, saveNotes } = useContext(NotesContext)!;
+    const [title, setTitle] = useState("");
+    const [content, setContent] = useState("");
 
     function saveNote(title: string, content: string) {
-        const trimmedTitle = title.trim()
-        const trimmedContent = content.trim()
+        const trimmedTitle = title.trim();
+        const trimmedContent = content.trim();
 
         if (trimmedTitle === "" || trimmedContent === "") {
-            alert("Title and Content cannot be empty")
+            alert("Title and Content cannot be empty");
             return
         }
 
@@ -33,14 +33,15 @@ export default function AddNotesPage() {
             date: Date.now(),
             lastRevised: Date.now(),
             numberOfRevisions: 0,
+            streak: 0
         }
 
         const updatedNotes = [...notes, newNote]
         setNotes(updatedNotes)
-        saveNotes()
-        setTitle("")
-        setContent("")
-        navigate("/viewNotes")
+        saveNotes();
+        setTitle("");
+        setContent("");
+        navigate("/viewNotes");
     }
 
     return (

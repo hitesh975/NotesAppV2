@@ -3,6 +3,8 @@ import { useState, useContext } from "react";
 import { FormulaContext } from "../formulaeContext";
 import "./viewFormulae.css"
 import ButtonsType1 from "../components/Buttons/ButtonsType1";
+import DOMPurify from "dompurify";
+import Parse from "../components/parser";
 
 export default function ViewForumulae() {
     const [search, setSearch] = useState('');

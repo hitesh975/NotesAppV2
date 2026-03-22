@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import ButtonsType1 from "../components/Buttons/ButtonsType1";
 import { NotesContext } from "../notesContext";
 import "./openNote.css";
+import DOMPurify from "dompurify";
+import Parse from "../components/parser";
 
 export default function OpenNote() {
   const navigate = useNavigate();
@@ -69,10 +71,10 @@ export default function OpenNote() {
     <div className="TopWrapper">
       <div className="open-note-container">
         <h2>{Title}</h2>
-        <textarea
-          className="NotesContent"
-          value={noteText}
-          onChange={(e) => setNoteText(e.target.value)}
+        <div
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(Parse(noteText))
+          }}
         />
         <div className="ButtonsOpenNote">
           <ButtonsType1 text="Go Back" onClick={() => navigate(-1)} />
