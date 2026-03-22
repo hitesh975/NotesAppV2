@@ -1,19 +1,21 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
+import { DefinitionContext } from "./definitionContext";
 import { useNavigate } from "react-router-dom"
 import ButtonsType1 from "./components/Buttons/ButtonsType1";
 
 export default function AddDefinitions () {
-    const Navigate = useNavigate();
-    const [definition, Setdefinition] = useState("");
-    
-    function Save() {
-        console.log("saved")
-        const existing = localStorage.getItem("definitions")
-        const existingArray = existing ? JSON.parse(existing) : [];
-        existingArray.push(definition);
-        localStorage.setItem("definitions",JSON.stringify(existingArray))
-        Setdefinition("");
-    }
+    const navigate = useNavigate();
+
+    const { definitions, setDefinitions, saveDefinition } = useContext(DefinitionContext)!;
+    const [definition, setDefinitionsInput] = useState("");
+
+    const handleSave = () => {
+        if (!definition.trim()) return;
+
+        setDefinitions(prev => [...prev, definition]);
+        saveDefinition();
+        navigate(-1);
+    };
 
     return (
         <div className="container">
@@ -21,10 +23,12 @@ export default function AddDefinitions () {
                 placeholder="Definition"
                 className="Definition"
                 value={definition}
-                onChange={(e)=> Setdefinition(e.target.value)}/>
+                onChange={(e)=> setDefinitionsInput(e.target.value)}
+            />
+
             <div className="Buttons">
-                <ButtonsType1 text="Save" onClick={()=>Save()}/>
-                <ButtonsType1 text="Back" onClick={()=>Navigate(-1)}/>
+                <ButtonsType1 text="Save" onClick={handleSave}/>
+                <ButtonsType1 text="Back" onClick={()=> navigate(-1)}/>
             </div>
         </div>
     )

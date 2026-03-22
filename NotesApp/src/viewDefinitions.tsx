@@ -1,22 +1,23 @@
 import { useNavigate } from "react-router-dom"
-import { useState } from "react"
+import { useContext } from "react"
+import { DefinitionContext } from "./definitionContext";
 import ButtonsType1 from "./components/Buttons/ButtonsType1";
 
 export default function ViewDefinitions () {
-    const Navigate = useNavigate();
-    const [definitions] = useState(()=>{
-        return JSON.parse(localStorage.getItem('definitions') || '[]')
-    })
+    const navigate = useNavigate();
+    const { definitions } = useContext(DefinitionContext)!;
+
     return (
         <div className="container">
-            {definitions.map((definition : String) => {
+            {definitions.map((definition: string, index: number) => {
                 return (
-                    <div key={definition+"definition"} className="formulae">
+                    <div key={index} className="formulae">
                         {definition}
                     </div>
                 )
             })}
-            <ButtonsType1 text="Back" onClick={()=>Navigate(-1)}/>
+            
+            <ButtonsType1 text="Back" onClick={()=> navigate(-1)}/>
         </div>
     )
 }

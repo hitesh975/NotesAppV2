@@ -1,6 +1,8 @@
 import { Routes, Route } from "react-router-dom"
 import { useState, useEffect } from "react";
 import { NotesContext } from "./notesContext";
+import { DefinitionContext } from "./definitionContext";
+import { FormulaContext } from "./formulaeContext";
 import AddNotesPage from "./pages/addNotes"
 import Home from "./pages/home"
 import ViewNotes from "./pages/viewNotes"
@@ -20,8 +22,39 @@ type Note = {
     lastRevised: number
     numberOfRevisions: number
 }
+type definition = string[];
+type formulae = string[];
 
 export default function App() {
+
+  //formula context ///////////////////////////////////
+  const [formulae, setFormulae] = useState<formulae>([])
+  useEffect(() => {
+    const stored = localStorage.getItem("formulae");
+    if (stored) {
+      setFormulae(JSON.parse(stored));
+    }
+  }, [])
+  const saveFormulae = () => {
+    localStorage.setItem("formulae", JSON.stringify(formulae));
+  }
+  //formula context end ///////////////////////////////
+
+  //definition context /////////////////////////////////
+  const [definitions, setDefinitions] = useState<definition>([])
+  useEffect(() => {
+    const stored = localStorage.getItem("definitions");
+    if (stored) {
+      setDefinitions(JSON.parse(stored));
+    }
+  }, [])
+  const saveDefinition = () => {
+    localStorage.setItem("definitions", JSON.stringify(definitions))
+  }
+
+  //definition context end //////////////////////////
+
+  //notes context///////////////////////////////////
   const [notes, setNotes] = useState<Note[]>([]);
   useEffect(() => {
     const stored = localStorage.getItem("notes");
@@ -32,21 +65,26 @@ export default function App() {
   const saveNotes = () => {
     localStorage.setItem("notes", JSON.stringify(notes));
   };
+  //notes context end////////////////////////////////
   return (
     <NotesContext.Provider value={{notes, setNotes, saveNotes}}>
-      <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/addNotes" element={<AddNotesPage />}/>
-          <Route path="/viewNotes" element={<ViewNotes />}/>
-          <Route path="/openNote" element={<OpenNote />}/>
-          <Route path="/Revision" element={<Revision />}/>
-          <Route path="/formulae" element={<Formulae/>}/>
-          <Route path="/formulae/addFormulae" element={<AddFormulae/>} />
-          <Route path="/formulae/viewFormulae" element={<ViewForumulae/>}/>
-          <Route path="/Definitions" element={<Definitions/>}/>
-          <Route path="/Definitions/addDefinitions" element={<AddDefinitions/>}/>
-          <Route path="/Definitions/viewDefinitions" element={<ViewDefinitions/>}/>
-        </Routes>
+      <DefinitionContext.Provider value={{definitions, setDefinitions, saveDefinition}}>
+        <FormulaContext.Provider value={{formulae, setFormulae, saveFormulae }}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/addNotes" element={<AddNotesPage />}/>
+            <Route path="/viewNotes" element={<ViewNotes />}/>
+            <Route path="/openNote" element={<OpenNote />}/>
+            <Route path="/Revision" element={<Revision />}/>
+            <Route path="/formulae" element={<Formulae/>}/>
+            <Route path="/formulae/addFormulae" element={<AddFormulae/>} />
+            <Route path="/formulae/viewFormulae" element={<ViewForumulae/>}/>
+            <Route path="/Definitions" element={<Definitions/>}/>
+            <Route path="/Definitions/addDefinitions" element={<AddDefinitions/>}/>
+            <Route path="/Definitions/viewDefinitions" element={<ViewDefinitions/>}/>
+          </Routes>
+        </FormulaContext.Provider>
+      </DefinitionContext.Provider>
     </NotesContext.Provider>
   )
 }
