@@ -1,6 +1,15 @@
 import calculateNextRevision from "./calculateNextRevision";
-import { useStorage, type Note } from "../App";
+import { useContext } from "react";
+import { NotesContext } from "../notesContext"; 
 
+type Note = {
+    title: string
+    content: string
+    date: number
+    lastRevised: number
+    numberOfRevisions: number
+    streak: number
+}
 function isRevisionPending(note: Note): boolean {
     const parsedNote: Note = {
         title: note.title,
@@ -16,6 +25,6 @@ function isRevisionPending(note: Note): boolean {
 }
 
 export default function useRevisionPendingNotes(): Note[] {
-    const { notes } = useStorage();
+    const {notes} = useContext(NotesContext)!;
     return notes.filter((note) => isRevisionPending(note));
 }

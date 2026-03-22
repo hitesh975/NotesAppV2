@@ -21,6 +21,7 @@ type Note = {
     date: number
     lastRevised: number
     numberOfRevisions: number
+    streak: number
 }
 type definition = string[];
 type formulae = string[];
