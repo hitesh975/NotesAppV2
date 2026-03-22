@@ -1,13 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { FormulaContext } from "../formulaeContext";
 import "./viewFormulae.css"
 import ButtonsType1 from "../components/Buttons/ButtonsType1";
 
 export default function ViewForumulae() {
     const [search, setSearch] = useState('');
-    const [formulae] = useState(()=>{
-        return JSON.parse(localStorage.getItem('formulae') || '[]')
-    })
+    const {formulae} = useContext(FormulaContext)!;
     const Navigate= useNavigate();
 
     return(
@@ -15,13 +14,13 @@ export default function ViewForumulae() {
             <input type="text"
                    value={search}
                    onChange={(e)=>(setSearch(e.target.value))} />
-            {formulae.map((Formula: string) => {
+            {formulae.map((Formula: string, index: number) => {
                 if (!Formula.toLowerCase().includes(search.toLowerCase())) {
                             return null;
                         }
                 return(
                 
-                <div key={Formula} className="formulae">
+                <div key={index} className="formulae">
                     {Formula}
                 </div>
             )
