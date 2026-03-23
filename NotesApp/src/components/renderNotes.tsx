@@ -4,8 +4,17 @@ import './renderNotes.css';
 import { useNavigate } from 'react-router-dom';
 import deleteIcon from '../assets/delete.svg';
 
+type Note = {
+    title: string
+    content: string
+    date: number
+    lastRevised: number
+    numberOfRevisions: number
+    streak: number
+}
+
 interface RenderNotesProps {
-    notes: any[];
+    notes: Note[];
     setNotes: React.Dispatch<React.SetStateAction<any[]>>;
 }
 

@@ -72,6 +72,7 @@ export default function OpenNote() {
       <div className="open-note-container">
         <h2>{Title}</h2>
         <div
+          className="NotesContent"
           dangerouslySetInnerHTML={{
             __html: DOMPurify.sanitize(Parse(noteText))
           }}
