@@ -16,14 +16,14 @@ export default function ViewForumulae() {
    return (
     <div>
         <div className="TopWrapper">
-                    <div className="renderContainer">
-                        <RenderNotes notes={formulae} setNotes={setFormulae} />
-                        <div>
-                            <ButtonsType1 text="Back" onClick={() => {Navigate(-1)}}></ButtonsType1>
-                            <ButtonsType1 text="clear all" onClick={clearAll} />
-                        </div>
-                    </div>
+            <div className="renderContainer">
+                <RenderNotes notes={formulae} setNotes={setFormulae} />
+                <div>
+                    <ButtonsType1 text="Back" onClick={() => {Navigate(-1)}}></ButtonsType1>
+                    <ButtonsType1 text="clear all" onClick={clearAll} />
                 </div>
+           </div>
+       </div>
     </div>
    )
 }

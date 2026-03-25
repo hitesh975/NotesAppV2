@@ -4,9 +4,20 @@ import { useNavigate } from "react-router-dom";
 import useRevisionPendingNotes from "../components/RevisionFindingAlgorithm";
 import calculateNextRevision from "../components/calculateNextRevision";
 
+type Note = {
+    title: string
+    content: string
+    date: number
+    lastRevised: number
+    numberOfRevisions: number
+    streak: number
+    Type: string
+}
+
 export default function Revision() {
   const navigate = useNavigate();
   const pendingNotes = useRevisionPendingNotes();
+  const missedNotes: Note[] = []
 
   return (
     <div className="revisionContainer">
@@ -44,6 +55,11 @@ export default function Revision() {
           </div>
         );
       })}
+      {
+        missedNotes.map((note => {
+
+        }))
+      }
         <ButtonsType1 text="Go Back" onClick={() => {navigate("/")}}></ButtonsType1>
     </div>
   );

@@ -1,7 +1,4 @@
 import calculateNextRevision from "./calculateNextRevision";
-import { useContext } from "react";
-import { NotesContext } from "../notesContext"; 
-import isMissed from "./isMissed";
 
 type Note = {
     title: string
@@ -12,7 +9,11 @@ type Note = {
     streak: number
     Type: string
 }
-function isRevisionPending(note: Note) {
+
+
+
+export default function isMissed (note: Note): Boolean {
+    const oneDay = 24 * 60 * 60 * 1000; // 1 day in ms
     const parsedNote: Note = {
         title: note.title,
         lastRevised: Number(note.lastRevised) || 0,
@@ -22,13 +23,9 @@ function isRevisionPending(note: Note) {
         date: note.date,
         Type: note.Type
     };
-    const [nextRevision, due] = calculateNextRevision(parsedNote);
-    const now = Date.now();
-    return now >= nextRevision && now <= due;
-}
-
-export default function useRevisionPendingNotes(): Note[] {
-    const {notes} = useContext(NotesContext)!;
-    const isPending = notes.filter((note) => isRevisionPending(note) && note.Type === "note")
-    return [isPending, ] ;
+    const [nextRevision] = calculateNextRevision(parsedNote);
+    const date = Date.now()
+    if (date > nextRevision && date < nextRevision * 3 * oneDay) {
+        return true
+    } else {return false}
 }
