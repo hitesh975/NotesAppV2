@@ -22,14 +22,13 @@ type Note = {
     lastRevised: number
     numberOfRevisions: number
     streak: number
+    Type: string
 }
-type definition = string[];
-type formulae = string[];
 
 export default function App() {
 
   //formula context ///////////////////////////////////
-  const [formulae, setFormulae] = useState<formulae>([])
+  const [formulae, setFormulae] = useState<Note[]>([])
   useEffect(() => {
     const stored = localStorage.getItem("formulae");
     if (stored) {
@@ -42,7 +41,7 @@ export default function App() {
   //formula context end ///////////////////////////////
 
   //definition context /////////////////////////////////
-  const [definitions, setDefinitions] = useState<definition>([])
+  const [definitions, setDefinitions] = useState<Note[]>([])
   useEffect(() => {
     const stored = localStorage.getItem("definitions");
     if (stored) {

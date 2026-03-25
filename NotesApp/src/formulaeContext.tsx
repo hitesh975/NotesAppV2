@@ -1,8 +1,16 @@
 import { createContext } from "react";
-type formula = string;
+type Note = {
+    title: string
+    content: string
+    date: number
+    lastRevised: number
+    numberOfRevisions: number
+    streak: number
+    Type: string
+}
 type FormulaContextType = {
-    formulae: formula[];
-    setFormulae: React.Dispatch<React.SetStateAction<formula[]>>;
+    formulae: Note[];
+    setFormulae: React.Dispatch<React.SetStateAction<Note[]>>;
     saveFormulae: () => void;
 }
 

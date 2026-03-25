@@ -6,6 +6,7 @@ type Note = {
     lastRevised: number
     numberOfRevisions: number
     streak: number
+    Type: string
 }
 type NotesContextType = {
   notes: Note[];

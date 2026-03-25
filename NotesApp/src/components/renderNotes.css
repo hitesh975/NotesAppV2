@@ -16,3 +16,11 @@
     width: 30px;
     height: 30px;
 }
+
+.NotnoteList {
+    display: flex;
+    flex-direction: row;
+    border-radius: 5px;
+    padding: 10px;
+    margin: auto
+}

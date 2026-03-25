@@ -4,6 +4,7 @@ import { useState, useContext } from "react"
 import { NotesContext } from "../notesContext"
 import "./addNotes.css"
 type Note = {
+    Type: string
     title: string
     content: string
     date: number
@@ -33,7 +34,8 @@ export default function AddNotesPage() {
             date: Date.now(),
             lastRevised: Date.now(),
             numberOfRevisions: 0,
-            streak: 0
+            streak: 0,
+            Type:"note"
         }
 
         const updatedNotes = [...notes, newNote]

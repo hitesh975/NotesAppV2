@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ButtonsType2 from './Buttons/ButtonsType2';
+import ButtonsType1 from './Buttons/ButtonsType1';
 import './renderNotes.css';
 import { useNavigate } from 'react-router-dom';
 import deleteIcon from '../assets/delete.svg';
@@ -11,6 +12,7 @@ type Note = {
     lastRevised: number
     numberOfRevisions: number
     streak: number
+    Type:string
 }
 
 interface RenderNotesProps {
@@ -45,7 +47,8 @@ export default function RenderNotes({ notes, setNotes }: RenderNotesProps) {
                         if (!title.toLowerCase().includes(searchTerm.toLowerCase())) {
                             return null;
                         }
-                        return (
+                        if (Notes.Type === 'note') {
+                            return (
                             <div key={Notes.title} className='noteList'>
                                 <ButtonsType2 text1={title} text2={date} onClick={
                                     () => Navigate('../openNote', {state: {key: Notes.title}})
@@ -55,6 +58,16 @@ export default function RenderNotes({ notes, setNotes }: RenderNotesProps) {
                                 </button>
                             </div>
                         )
+                        } else {
+                            return (
+                            <div key={Notes.title} className='NotnoteList'>
+                                <div className='ButtonType1'>{Notes.content}</div>
+                                <button className="deleteButton1" onClick={() => handleDelete(titleKey)}>
+                                    <img src={deleteIcon} alt="delete" className='delete-icon' />
+                                </button>
+                            </div>
+                        )
+                        }
                     })}
                 </div>
             </>

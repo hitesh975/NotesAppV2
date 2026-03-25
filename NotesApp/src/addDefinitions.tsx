@@ -2,17 +2,35 @@ import { useState, useContext } from "react"
 import { DefinitionContext } from "./definitionContext";
 import { useNavigate } from "react-router-dom"
 import ButtonsType1 from "./components/Buttons/ButtonsType1";
+type Note = {
+    title: string
+    content: string
+    date: number
+    lastRevised: number
+    numberOfRevisions: number
+    streak: number
+    Type: string
+}
 
 export default function AddDefinitions () {
     const navigate = useNavigate();
 
-    const { definitions, setDefinitions, saveDefinition } = useContext(DefinitionContext)!;
+    const { setDefinitions, saveDefinition } = useContext(DefinitionContext)!;
     const [definition, setDefinitionsInput] = useState("");
 
     const handleSave = () => {
         if (!definition.trim()) return;
+        const newDefinition: Note = {
+            title: definition + Math.floor(Math.random() * 100000),
+            content: definition,
+            date: Date.now(),
+            lastRevised: Date.now(),
+            numberOfRevisions: 0,
+            streak: 0,
+            Type: "formula"
+        }
 
-        setDefinitions(prev => [...prev, definition]);
+        setDefinitions(prev => [...prev, newDefinition]);
         saveDefinition();
         navigate(-1);
     };
