@@ -6,7 +6,7 @@ import useRevisionPendingNotes from "../components/RevisionFindingAlgorithm";
 
 export default function Home() {
         const navigate = useNavigate();
-        const pendingNotes = useRevisionPendingNotes();
+        const {pendingNotes} = useRevisionPendingNotes();
         const pendingCount = pendingNotes.length;
     return(
         <div className="container">

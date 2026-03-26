@@ -14,6 +14,7 @@ type Note = {
 }
 
 export default function AddNotesPage() {
+    const oneDay = 24 * 60 * 60 * 1000; // 1 day in ms
     const navigate = useNavigate();
     const { notes, setNotes, saveNotes } = useContext(NotesContext)!;
     const [title, setTitle] = useState("");
