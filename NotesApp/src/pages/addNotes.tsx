@@ -32,8 +32,8 @@ export default function AddNotesPage() {
         const newNote: Note = {
             title: trimmedTitle + Math.floor(Math.random() * 100000),
             content: trimmedContent,
-            date: Date.now(),
-            lastRevised: Date.now(),
+            date: Date.now(), //here
+            lastRevised: Date.now(), //here
             numberOfRevisions: 0,
             streak: 0,
             Type:"note"

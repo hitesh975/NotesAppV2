@@ -18,5 +18,10 @@
         const interval =
             baseInterval * Math.pow(multiplier, note.numberOfRevisions);
         const due = note.lastRevised + interval + oneDay;
-        return [note.lastRevised + interval, due]; 
+        return [note.lastRevised + interval, due];
+        /*if (due > Date.now()) {return [note.lastRevised + interval, due];} else {
+            const threeDays = oneDay * 3
+            const newDue = due +  threeDays;
+            return[due + oneDay, newDue];
+        }*/
     }

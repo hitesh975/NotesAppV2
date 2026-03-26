@@ -4,10 +4,12 @@ import { useNavigate } from "react-router-dom";
 import useRevisionPendingNotes from "../components/RevisionFindingAlgorithm";
 import calculateNextRevision from "../components/calculateNextRevision";
 
-
 export default function Revision() {
+
   const navigate = useNavigate();
-  const { pendingNotes, missedNotes, upcomingNotes } = useRevisionPendingNotes()
+  const { pendingNotes, missedNotes, upcomingNotes } = useRevisionPendingNotes();
+  console.log(missedNotes, upcomingNotes)
+
 
   return (
     <div className="revisionContainer">
@@ -52,7 +54,7 @@ export default function Revision() {
           return (
             <div className="missedNote">
               <div className="missedTitle">{note.title.slice(0,-5)}</div>
-              <div className="missedDesc">Revision started by: {new Date(nextRevision).toLocaleDateString()}</div> 
+              <div className="missedDesc">Revision start by: {new Date(nextRevision).toLocaleDateString()}</div> 
               <div className="missedDesc">Revision due by: {new Date(due).toLocaleDateString()}</div>
             </div>
           )

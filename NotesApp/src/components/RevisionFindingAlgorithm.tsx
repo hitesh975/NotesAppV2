@@ -1,7 +1,7 @@
 import calculateNextRevision from "./calculateNextRevision";
 import { useContext } from "react";
 import { NotesContext } from "../notesContext"; 
-import isMissed from "./isMissed";
+
 
 type Note = {
     title: string
