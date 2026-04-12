@@ -28,6 +28,8 @@ export default function Revision() {
               /*for now i will just navigate the user to the note they saved, will add a proper things
               to revise later */
               navigate('./openNote', {state: {key: note.title}});
+              note.lastRevised = Date.now();
+              note.numberOfRevisions += 1;
             }}/>
             <p className="RevisionComponent">
               Last Revised:{" "}

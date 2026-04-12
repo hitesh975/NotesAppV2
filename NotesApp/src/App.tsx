@@ -82,6 +82,7 @@ export default function App() {
             <Route path="/Definitions" element={<Definitions/>}/>
             <Route path="/Definitions/addDefinitions" element={<AddDefinitions/>}/>
             <Route path="/Definitions/viewDefinitions" element={<ViewDefinitions/>}/>
+            <Route path="/Revision/openNote" element={<OpenNote />} />
           </Routes>
         </FormulaContext.Provider>
       </DefinitionContext.Provider>
