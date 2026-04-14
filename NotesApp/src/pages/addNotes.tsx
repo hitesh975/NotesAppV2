@@ -3,6 +3,7 @@ import ButtonsType1 from "../components/Buttons/ButtonsType1"
 import { useState, useContext } from "react"
 import { NotesContext } from "../notesContext"
 import "./addNotes.css"
+import { addHeading, addDefinition, addFormula, addPoint, addParagraph, addProcess, addTable, addExample, addKeyword } from "./editorHandlers"
 type Note = {
     Type: string
     title: string
@@ -13,12 +14,14 @@ type Note = {
     streak: number
 }
 
+
 export default function AddNotesPage() {
     const oneDay = 24 * 60 * 60 * 1000; // 1 day in ms
     const navigate = useNavigate();
     const { notes, setNotes, saveNotes } = useContext(NotesContext)!;
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+    const [editorContent, setEditorContent] = useState<any[]>([]);
 
     function saveNote(title: string, content: string) {
         const trimmedTitle = title.trim();
@@ -50,21 +53,36 @@ export default function AddNotesPage() {
     return (
         <div className="TopWrapper">
             <div className="sideBar">
-                
+                <button className="sideBarButton" onClick={() => addHeading(setEditorContent, editorContent)}>Heading</button>
+                <button className="sideBarButton" onClick={() => addDefinition(setEditorContent, editorContent)}>Definition</button>
+                <button className="sideBarButton" onClick={() => addFormula(setEditorContent, editorContent)}>Formula</button>
+                <button className="sideBarButton" onClick={() => addPoint(setEditorContent, editorContent)}>Point</button>
+                <button className="sideBarButton" onClick={() => addParagraph(setEditorContent, editorContent)}>Paragraph</button>
+                <button className="sideBarButton" onClick={() => addProcess(setEditorContent, editorContent)}>Process</button>
+                <button className="sideBarButton" onClick={() => addTable(setEditorContent, editorContent)}>Table</button>
+                <button className="sideBarButton" onClick={() => addExample(setEditorContent, editorContent)}>Example</button>
+                <button className="sideBarButton" onClick={() => addKeyword(setEditorContent, editorContent)}>Keyword</button>
             </div>
+
             <div className="AddNotesContainer">
                 <input
                     type="text"
                     placeholder="Title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
+                    className="title"
                 />
 
-                <textarea
-                    placeholder="Content"
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)}
-                />
+                <div className="NoteEditorContainer">
+                    {editorContent.map((item) => (
+                        <input
+                            key={item.id}
+                            type="text"
+                            placeholder={item.type.charAt(0).toUpperCase() + item.type.slice(1)}
+                            className="EditorInput"
+                        />
+                    ))}
+                </div>
 
                 <div>
                     <ButtonsType1

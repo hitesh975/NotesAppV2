@@ -1,4 +1,4 @@
-input {
+.title {
     width: 90%;
     padding: 10px;
     margin-bottom: 10px;
@@ -38,4 +38,37 @@ textarea {
     background-color: white;
     height: 80%;
     overflow-y: auto;
+}
+
+.sideBar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #2B2B2B;
+    padding: 20px;
+    border-radius: 8px;
+    height: fit-content;
+    width: fit-content;
+}
+
+.sideBarButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: white;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.sideBarButton:hover {
+    background-color: #ddd;
+}
+
+.NoteEditorContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-left: 50px;
 }
