@@ -13,6 +13,7 @@ export default function Revision() {
 
   return (
     <div className="revisionContainer">
+      <h2>Revision Notes</h2>
       {pendingNotes.length === 0 && (
         <div className="revisionNote">
           <p className="noRevisionPending">No revisions pending</p>
@@ -50,21 +51,25 @@ export default function Revision() {
         );
       })}
       <div className="missedNotes">
+        <h2>Missed Notes</h2>
         {
         missedNotes.map((note) => {
-          const [nextRevision, due] = calculateNextRevision(note);
-          return (
+          const [nextRevision, due, isMissed] = calculateNextRevision(note);
+          if (isMissed) {
+            return (
             <div className="missedNote">
               <div className="missedTitle">{note.title.slice(0,-5)}</div>
               <div className="missedDesc">Revision start by: {new Date(nextRevision).toLocaleDateString()}</div> 
               <div className="missedDesc">Revision due by: {new Date(due).toLocaleDateString()}</div>
             </div>
           )
+          }
         })
       }
       </div>
 
       <div className="upcoming">
+        <h2 className="Heading">Upcoming Notes</h2>
   {upcomingNotes.length === 0 && (
     <div className="revisionNote">
       <p className="noRevisionPending">No upcoming revisions</p>
@@ -72,9 +77,10 @@ export default function Revision() {
   )}
 
   {upcomingNotes.map((note) => {
-    const [nextRevision] = calculateNextRevision(note);
+    const [nextRevision, due ,isMissed] = calculateNextRevision(note);
 
-    return (
+    if (!isMissed) {
+      return (
       <div key={note.title} className="upcomingNotes">
         <div className="upcomingNote">{note.title.slice(0,-5)}</div>
         <p className="upcomingDesc">
@@ -86,6 +92,7 @@ export default function Revision() {
         </p>
       </div>
     );
+    }
   })}
 </div>
         <ButtonsType1 text="Go Back" onClick={() => {navigate("/")}}></ButtonsType1>
