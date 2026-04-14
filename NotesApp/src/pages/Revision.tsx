@@ -59,8 +59,8 @@ export default function Revision() {
             return (
             <div className="missedNote">
               <div className="missedTitle">{note.title.slice(0,-5)}</div>
-              <div className="missedDesc">Revision start by: {new Date(nextRevision).toLocaleDateString()}</div> 
-              <div className="missedDesc">Revision due by: {new Date(due).toLocaleDateString()}</div>
+              <div className="missedDesc">New Revision start by: {new Date(nextRevision).toLocaleDateString()}</div> 
+              <div className="missedDesc">New Revision due by: {new Date(due).toLocaleDateString()}</div>
             </div>
           )
           }

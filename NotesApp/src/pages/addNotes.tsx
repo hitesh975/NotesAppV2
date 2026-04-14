@@ -49,6 +49,9 @@ export default function AddNotesPage() {
 
     return (
         <div className="TopWrapper">
+            <div className="sideBar">
+                
+            </div>
             <div className="AddNotesContainer">
                 <input
                     type="text"

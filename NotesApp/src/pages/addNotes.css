@@ -9,6 +9,8 @@ input {
 }
 
 .TopWrapper {
+    display: flex;
+    flex-direction: row;
     padding-top: 30px;
 }
 
