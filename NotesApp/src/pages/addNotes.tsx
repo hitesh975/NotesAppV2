@@ -16,6 +16,8 @@ type Note = {
 
 
 export default function AddNotesPage() {
+    console.log("Component rendered");
+    const [selectedId, setSelectedId] = useState<number | null>(null);
     const oneDay = 24 * 60 * 60 * 1000; // 1 day in ms
     const navigate = useNavigate();
     const { notes, setNotes, saveNotes } = useContext(NotesContext)!;
@@ -74,13 +76,31 @@ export default function AddNotesPage() {
                 />
 
                 <div className="NoteEditorContainer">
-                    {editorContent.map((item) => (
-                        <input
-                            key={item.id}
-                            type="text"
-                            placeholder={item.type.charAt(0).toUpperCase() + item.type.slice(1)}
-                            className="EditorInput"
-                        />
+                    {editorContent.map((item, index) => (
+                        <div
+                            key={item.id + "-" + selectedId}
+                            className={`EditorInput ${selectedId === item.id ? "selected" : ""}`}
+                            contentEditable={true}
+                            suppressContentEditableWarning
+                            onInput={(e) => {
+                                const newContent = [...editorContent];   // copy list
+                                newContent[index] = {
+                                ...newContent[index],
+                                value: (e.target as HTMLElement).innerText
+                            };
+                                setEditorContent(newContent);           // save + update UI
+                            }}
+                            onMouseDown={(e) => {
+                                console.log("clicked", item.id);
+                                e.stopPropagation();
+                                setSelectedId(prev =>
+                                    prev === item.id ? null : item.id
+                                );
+                                console.log("selectedId:", selectedId);
+                            }}
+                        >
+                            {item.value}
+                        </div>
                     ))}
                 </div>
 

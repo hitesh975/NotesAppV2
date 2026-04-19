@@ -72,3 +72,11 @@ textarea {
     width: 100%;
     margin-left: 50px;
 }
+
+.selected {
+    border: 2px solid blue;
+}
+
+.EditorInput {
+    min-width: 100px;
+}

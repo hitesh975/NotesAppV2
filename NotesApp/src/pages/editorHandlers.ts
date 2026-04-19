@@ -4,7 +4,8 @@ const createEditorElement = (type: string) => ({
     id: Date.now(),
     type: type,
     value: "",
-    className: 'EditorInput'
+    className: 'EditorInput',
+    children: []
 });
 
 export const addHeading = (setEditorContent: any, editorContent: any) => {
