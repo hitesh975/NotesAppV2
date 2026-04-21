@@ -77,26 +77,22 @@ export default function AddNotesPage() {
 
                 <div className="NoteEditorContainer">
                     {editorContent.map((item, index) => (
+                        
                         <div
-                            key={item.id + "-" + selectedId}
+                            key={item.id}
                             className={`EditorInput ${selectedId === item.id ? "selected" : ""}`}
-                            contentEditable={true}
+                            contentEditable={selectedId === item.id}
                             suppressContentEditableWarning
+                            onClick={() => {
+                                setSelectedId(item.id);
+                                }}
                             onInput={(e) => {
-                                const newContent = [...editorContent];   // copy list
+                                const newContent = [...editorContent];
                                 newContent[index] = {
-                                ...newContent[index],
-                                value: (e.target as HTMLElement).innerText
-                            };
-                                setEditorContent(newContent);           // save + update UI
-                            }}
-                            onMouseDown={(e) => {
-                                console.log("clicked", item.id);
-                                e.stopPropagation();
-                                setSelectedId(prev =>
-                                    prev === item.id ? null : item.id
-                                );
-                                console.log("selectedId:", selectedId);
+                                    ...newContent[index],
+                                    value: (e.target as HTMLElement).innerText
+                                };
+                                setEditorContent(newContent);
                             }}
                         >
                             {item.value}
