@@ -77,7 +77,6 @@ export default function AddNotesPage() {
 
                 <div className="NoteEditorContainer">
                     {editorContent.map((item, index) => (
-                        
                         <div
                             key={item.id}
                             className={`EditorInput ${selectedId === item.id ? "selected" : ""}`}
