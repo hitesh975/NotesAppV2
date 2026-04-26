@@ -13,9 +13,23 @@ type Note = {
     numberOfRevisions: number
     streak: number
 }
+type EditorElement = {
+    id: number
+    type: string
+    value: string
+    className: string
+    children: EditorElement[]
+}
 
 
 export default function AddNotesPage() {
+    function getObjectById(id: number | null) {
+        if(selectedId === null) {
+            return null;
+        }
+
+        return editorContent.find(item => item.id === id);
+    }
     console.log("Component rendered");
     const [selectedId, setSelectedId] = useState<number | null>(null);
     const oneDay = 24 * 60 * 60 * 1000; // 1 day in ms
@@ -51,19 +65,20 @@ export default function AddNotesPage() {
         setContent("");
         navigate("/viewNotes");
     }
-
+    
+    const obj: EditorElement | null = getObjectById(selectedId);
     return (
         <div className="TopWrapper">
             <div className="sideBar">
-                <button className="sideBarButton" onClick={() => addHeading(setEditorContent, editorContent)}>Heading</button>
-                <button className="sideBarButton" onClick={() => addDefinition(setEditorContent, editorContent)}>Definition</button>
-                <button className="sideBarButton" onClick={() => addFormula(setEditorContent, editorContent)}>Formula</button>
-                <button className="sideBarButton" onClick={() => addPoint(setEditorContent, editorContent)}>Point</button>
-                <button className="sideBarButton" onClick={() => addParagraph(setEditorContent, editorContent)}>Paragraph</button>
-                <button className="sideBarButton" onClick={() => addProcess(setEditorContent, editorContent)}>Process</button>
-                <button className="sideBarButton" onClick={() => addTable(setEditorContent, editorContent)}>Table</button>
-                <button className="sideBarButton" onClick={() => addExample(setEditorContent, editorContent)}>Example</button>
-                <button className="sideBarButton" onClick={() => addKeyword(setEditorContent, editorContent)}>Keyword</button>
+                <button className="sideBarButton" onClick={() => addHeading(setEditorContent, editorContent, obj)}>Heading</button>
+                <button className="sideBarButton" onClick={() => addDefinition(setEditorContent, editorContent, obj)}>Definition</button>
+                <button className="sideBarButton" onClick={() => addFormula(setEditorContent, editorContent, obj)}>Formula</button>
+                <button className="sideBarButton" onClick={() => addPoint(setEditorContent, editorContent, obj)}>Point</button>
+                <button className="sideBarButton" onClick={() => addParagraph(setEditorContent, editorContent, obj)}>Paragraph</button>
+                <button className="sideBarButton" onClick={() => addProcess(setEditorContent, editorContent, obj)}>Process</button>
+                <button className="sideBarButton" onClick={() => addTable(setEditorContent, editorContent, obj)}>Table</button>
+                <button className="sideBarButton" onClick={() => addExample(setEditorContent, editorContent, obj)}>Example</button>
+                <button className="sideBarButton" onClick={() => addKeyword(setEditorContent, editorContent, obj)}>Keyword</button>
             </div>
 
             <div className="AddNotesContainer">
@@ -76,7 +91,8 @@ export default function AddNotesPage() {
                 />
 
                 <div className="NoteEditorContainer">
-                    {editorContent.map((item, index) => (
+                    {editorContent.map((item, index) => { 
+                        return (
                         <div
                             key={item.id}
                             className={`EditorInput ${selectedId === item.id ? "selected" : ""}`}
@@ -84,6 +100,7 @@ export default function AddNotesPage() {
                             suppressContentEditableWarning
                             onClick={() => {
                                 setSelectedId(item.id);
+                                console.log(editorContent);
                                 }}
                             onInput={(e) => {
                                 const newContent = [...editorContent];
@@ -96,7 +113,7 @@ export default function AddNotesPage() {
                         >
                             {item.value}
                         </div>
-                    ))}
+                    )})}
                 </div>
 
                 <div>
