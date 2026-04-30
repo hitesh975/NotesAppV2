@@ -59,7 +59,7 @@ export default function AddNotesPage() {
         }
 
         const updatedNotes = [...notes, newNote]
-        setNotes(updatedNotes)
+        setNotes(updatedNotes);
         saveNotes();
         setTitle("");
         setContent("");
@@ -99,7 +99,9 @@ export default function AddNotesPage() {
                             contentEditable={selectedId === item.id}
                             suppressContentEditableWarning
                             onClick={() => {
-                                setSelectedId(item.id);
+                                if (selectedId === item.id) {
+                                    setSelectedId(null)
+                                } else {setSelectedId(item.id);}
                                 console.log(editorContent);
                                 }}
                             onInput={(e) => {
@@ -111,7 +113,7 @@ export default function AddNotesPage() {
                                 setEditorContent(newContent);
                             }}
                         >
-                            {item.value}
+                             {item.value} 
                         </div>
                     )})}
                 </div>
