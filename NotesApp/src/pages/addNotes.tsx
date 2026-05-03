@@ -21,6 +21,37 @@ type EditorElement = {
     children: EditorElement[]
 }
 
+function TreeNode ({ item, selectedId, setSelectedId }:
+     { item: EditorElement;
+       selectedId: number | null;
+       setSelectedId: (id: number | null) => void
+     }) {
+    return (
+        <>
+        <div
+            key={item.id}
+            data-editor-id={item.id}
+            className={`EditorInput ${selectedId === item.id ? "selected" : ""}`}
+            contentEditable={false}
+            suppressContentEditableWarning
+            onClick={() => {
+                if (selectedId === item.id) {
+                    setSelectedId(null)
+                } else {setSelectedId(item.id);}
+                    console.log("selected id:", selectedId);
+                    console.log(selectedId === item.id);
+                }}
+                
+            >
+                {item.value}
+                {item.children?.map((child) => (
+                <TreeNode key={child.id} item={child} selectedId={selectedId} setSelectedId={setSelectedId} />
+        ))}
+        </div>
+        
+        </>
+    )
+}
 
 export default function AddNotesPage() {
     function getObjectById(id: number | null) {
@@ -107,23 +138,7 @@ export default function AddNotesPage() {
                 <div className="NoteEditorContainer">
                     {editorContent.map((item) => { 
                         return (
-                        <div
-                            key={item.id}
-                            data-editor-id={item.id}
-                            className={`EditorInput ${selectedId === item.id ? "selected" : ""}`}
-                            contentEditable={false}
-                            suppressContentEditableWarning
-                            onClick={() => {
-                                if (selectedId === item.id) {
-                                    setSelectedId(null)
-                                } else {setSelectedId(item.id);}
-                                console.log("selected id:", selectedId);
-                                console.log(selectedId === item.id);
-                                }}
-                            
-                        >
-                            
-                        </div>
+                        TreeNode({ item, selectedId, setSelectedId })
                     )})}
                 </div>
 
