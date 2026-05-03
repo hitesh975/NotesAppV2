@@ -36,38 +36,39 @@ function addtool(
     }
 }
 
-export function addHeading(setEditorContent: any, editorContent: any, selected: EditorElement | null) {
+export function addHeading(setEditorContent: React.Dispatch<React.SetStateAction<EditorElement[]>>, editorContent: EditorElement[], selected: EditorElement | null, selectedId: number | null) {
     addtool(setEditorContent, editorContent, selected, "Heading");
+    console.log(selectedId);
 }
 
-export function addDefinition(setEditorContent: any, editorContent: any, selected: EditorElement | null) {
+export function addDefinition(setEditorContent: React.Dispatch<React.SetStateAction<EditorElement[]>>, editorContent: EditorElement[], selected: EditorElement | null) {
     addtool(setEditorContent, editorContent, selected, "Definition");
 }
 
-export function addFormula(setEditorContent: any, editorContent: any, selected: EditorElement | null) {
+export function addFormula(setEditorContent: React.Dispatch<React.SetStateAction<EditorElement[]>>, editorContent: EditorElement[], selected: EditorElement | null) {
     addtool(setEditorContent, editorContent, selected, "Formula");
 }
-export function addPoint(setEditorContent: any, editorContent: any, selected: EditorElement | null) {
+export function addPoint(setEditorContent: React.Dispatch<React.SetStateAction<EditorElement[]>>, editorContent: EditorElement[], selected: EditorElement | null) {
     addtool(setEditorContent, editorContent, selected, "Point");
 }
 
-export function addParagraph(setEditorContent: any, editorContent: any, selected: EditorElement | null) {
+export function addParagraph(setEditorContent: React.Dispatch<React.SetStateAction<EditorElement[]>>, editorContent: EditorElement[], selected: EditorElement | null) {
     addtool(setEditorContent, editorContent, selected, "Paragraph");
 }
 
-export function addProcess(setEditorContent: any, editorContent: any, selected: EditorElement | null) {
+export function addProcess(setEditorContent: React.Dispatch<React.SetStateAction<EditorElement[]>>, editorContent: EditorElement[], selected: EditorElement | null) {
     addtool(setEditorContent, editorContent, selected, "Process");
 }
 
-export function addTable(setEditorContent: any, editorContent: any, selected: EditorElement | null) {
+export function addTable(setEditorContent: React.Dispatch<React.SetStateAction<EditorElement[]>>, editorContent: EditorElement[], selected: EditorElement | null) {
     addtool(setEditorContent, editorContent, selected, "Table");
 }
 
-export function addExample(setEditorContent: any, editorContent: any, selected: EditorElement | null) {
+export function addExample(setEditorContent: React.Dispatch<React.SetStateAction<EditorElement[]>>, editorContent: EditorElement[], selected: EditorElement | null) {
     addtool(setEditorContent, editorContent, selected, "Example");
 }
 
-export function addKeyword(setEditorContent: any, editorContent: any, selected: EditorElement | null) {
+export function addKeyword(setEditorContent: React.Dispatch<React.SetStateAction<EditorElement[]>>, editorContent: EditorElement[], selected: EditorElement | null) {
     addtool(setEditorContent, editorContent, selected, "Keyword");
 }
        

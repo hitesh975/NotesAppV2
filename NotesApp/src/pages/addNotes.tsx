@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import ButtonsType1 from "../components/Buttons/ButtonsType1"
-import { useState, useContext } from "react"
+import { useState, useContext, useRef, useEffect } from "react"
 import { NotesContext } from "../notesContext"
 import "./addNotes.css"
 import { addHeading, addDefinition, addFormula, addPoint, addParagraph, addProcess, addTable, addExample, addKeyword } from "./editorHandlers"
@@ -67,10 +67,24 @@ export default function AddNotesPage() {
     }
     
     const obj: EditorElement | null = getObjectById(selectedId);
+
+    useEffect(() => {
+        const allElements = document.querySelectorAll("[data-editor-id]");
+        allElements.forEach((el) => {
+            const elementId = parseInt((el as HTMLElement).getAttribute("data-editor-id") || "");
+            if (selectedId !== null && elementId === selectedId) {
+                (el as HTMLElement).contentEditable = "true";
+                (el as HTMLElement).focus();
+            } else {
+                (el as HTMLElement).contentEditable = "false";
+            }
+        });
+    }, [selectedId]);
+
     return (
         <div className="TopWrapper">
             <div className="sideBar">
-                <button className="sideBarButton" onClick={() => addHeading(setEditorContent, editorContent, obj)}>Heading</button>
+                <button className="sideBarButton" onClick={() => addHeading(setEditorContent, editorContent, obj, selectedId)}>Heading</button>
                 <button className="sideBarButton" onClick={() => addDefinition(setEditorContent, editorContent, obj)}>Definition</button>
                 <button className="sideBarButton" onClick={() => addFormula(setEditorContent, editorContent, obj)}>Formula</button>
                 <button className="sideBarButton" onClick={() => addPoint(setEditorContent, editorContent, obj)}>Point</button>
@@ -91,29 +105,24 @@ export default function AddNotesPage() {
                 />
 
                 <div className="NoteEditorContainer">
-                    {editorContent.map((item, index) => { 
+                    {editorContent.map((item) => { 
                         return (
                         <div
                             key={item.id}
+                            data-editor-id={item.id}
                             className={`EditorInput ${selectedId === item.id ? "selected" : ""}`}
-                            contentEditable={selectedId === item.id}
+                            contentEditable={false}
                             suppressContentEditableWarning
                             onClick={() => {
                                 if (selectedId === item.id) {
                                     setSelectedId(null)
                                 } else {setSelectedId(item.id);}
-                                console.log(editorContent);
+                                console.log("selected id:", selectedId);
+                                console.log(selectedId === item.id);
                                 }}
-                            onInput={(e) => {
-                                const newContent = [...editorContent];
-                                newContent[index] = {
-                                    ...newContent[index],
-                                    value: (e.target as HTMLElement).innerText
-                                };
-                                setEditorContent(newContent);
-                            }}
+                            
                         >
-                             {item.value} 
+                            
                         </div>
                     )})}
                 </div>
