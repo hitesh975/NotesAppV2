@@ -1,39 +1,37 @@
-import { useEditor, EditorContent } from "@tiptap/react";
+import {
+  useEditor,
+  EditorContent,
+  Editor as TiptapEditor,
+} from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import TextBlock from "./textblock";
+import { useEffect } from "react";
 
-export default function Editor() {
+type Props = {
+  setContent: React.Dispatch<React.SetStateAction<string>>;
+  setEditor: React.Dispatch<React.SetStateAction<TiptapEditor | null>>;
+};
+
+export default function Editor({ setContent, setEditor }: Props) {
   const editor = useEditor({
     extensions: [StarterKit, TextBlock],
     content: "<p>Start typing...</p>",
+
+    onUpdate: ({ editor }) => {
+      setContent(editor.getHTML());
+    },
   });
+
+  useEffect(() => {
+    if (editor) {
+      setEditor(editor);
+    }
+  }, [editor, setEditor]);
 
   if (!editor) return null;
 
   return (
     <div>
-      {/* BUTTON */}
-      <button
-        onClick={() =>
-          editor
-            .chain()
-            .focus()
-            .insertContent({
-              type: "textBlock",
-              content: [
-                {
-                  type: "paragraph",
-                  content: [{ type: "text", text: "New Text Block" }],
-                },
-              ],
-            })
-            .run()
-        }
-      >
-        Add Text Block
-      </button>
-
-      {/* EDITOR */}
       <EditorContent editor={editor} />
     </div>
   );

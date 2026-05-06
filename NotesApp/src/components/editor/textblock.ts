@@ -1,4 +1,4 @@
-import { Node } from "@tiptap/react";
+import { Node } from "@tiptap/core";
 
 const textBlock = Node.create({
   name: "textBlock",
